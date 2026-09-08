@@ -1,49 +1,53 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working in this repository.
 
-## Project Overview
+## What this is
 
-Lead Generator SG is a B2B lead discovery tool for the Singapore market. It's a frontend-only single-page application (vanilla HTML/CSS/JS, no framework, no build step) that integrates with the Apify API to scrape Google Places data.
+The hands-on labs for the WSQ course **Agentic AI Applications with Claude Code**
+(TGS-2025052468). This repo is *courseware*, not an application: its primary
+product is the lab instructions learners follow.
 
-## Running the App
-
-```bash
-npx serve        # Serve on localhost:3000
-```
-
-No build, lint, or test commands — open `index.html` via any static server.
-
-## Architecture
+## Structure
 
 ```
-index.html   — Page structure: search form, results table, state containers
-data.js      — Constants: SECTORS (17), JOB_TITLES (13), TARGET_GROUPS (5)
-app.js       — All application logic (IIFE, no modules)
-export.js    — CSV export utility (exportToCSV)
-style.css    — Dark/light theming via CSS custom properties + data-theme attribute
-.mcp.json    — Apify + Playwright MCP server configs
+lab1-seven-steps/     Lab 1 (Topic 1) — the 7-step build workflow
+  README.md             lab overview + the 7-step checklist
+  steps/                STEP-1..STEP-7, one file per step
+  reference-site/       finished deliverable (NorthPoint Systems)
+  sample-sites/         bride-booking, interior-design, lead-generation
+lab1b-commands-mcp/   Lab 1b (Topic 2) — /publish command + Playwright MCP
+lab2-skills/          Lab 2 (Topic 3) — cybersecurity / kanban / ui-ux skills
+lab3-hooks/           Lab 3 (Topic 3) — hooks, sub agents, /loop
+course-activities.md  legacy single-file walkthrough (superseded)
 ```
 
-Scripts load in order: `data.js` → `export.js` → `app.js`. All share the global scope.
+## Conventions for lab documents
 
-## Data Flow
+- Every lab folder has a `README.md` that indexes its parts and states the
+  checkpoint for the lab as a whole.
+- Each part/step file follows the same shape: **Objective** → numbered steps
+  with the **exact prompt in a fenced block** → **Checkpoint** → prev/next links.
+- Prompts are written to be pasted verbatim. Keep them specific and complete —
+  they are the teaching material, not a sketch.
+- Cross-reference with relative links so they work on github.com.
+- British spelling, matching the slide deck and Learner Guide.
 
-1. User selects sectors, job titles, target group, location, keywords
-2. `buildSearchQueries()` constructs up to 5 search strings
-3. `runApifyActor()` calls Apify's synchronous endpoint (`run-sync-get-dataset-items`) using the `compass~crawler-google-places` actor
-4. `parseApifyResults()` normalizes response into lead objects
-5. `renderTable()` displays leads with sorting and pagination (25/page)
-6. `exportToCSV()` downloads results as CSV
+## Sample sites
 
-## Key Patterns
+All static — no build step. Open `index.html` directly in a browser.
 
-- **State management**: `showState(state)` toggles visibility between `empty`, `loading`, `error`, `results`
-- **Theming**: `data-theme` attribute on `<html>`, CSS custom properties (--bg, --text, --accent, etc.), persisted to localStorage
-- **Multi-select dropdowns**: Custom-built with checkboxes, no library
-- **XSS protection**: `esc()` function for HTML escaping in table rendering
-- **Apify token**: Hardcoded in app.js (frontend-exposed)
+`sample-sites/lead-generation` calls the Apify API; its token is entered in the
+browser and kept in `localStorage`. Its local `.env` is gitignored and must
+never be committed.
 
-## Lead Object Schema
+## Alignment
 
-Fields: `companyName`, `industry`, `contactPerson`, `jobTitle`, `email`, `phone`, `website`, `linkedin`, `companySize`, `location`, `source`, `dateFound`. Contact person, job title, LinkedIn, and company size are always "N/A" (not available from Google Places).
+The labs mirror the course deck and Learner Guide. Lab 1 = Activity 1A/1B,
+Lab 1b = Activities 2/3, Lab 2 = Activity 4, Lab 3 = Activities 5/6. If a lab
+changes, the corresponding activity slide and LG section must change with it.
+
+## Do not
+
+- Commit secrets, API keys or `.env` files.
+- Add build tooling — the samples must stay runnable by opening a file.

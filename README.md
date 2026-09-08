@@ -1,86 +1,86 @@
-# Agentic AI Applications with Claude Code (TGS-2025052468)
+# Labs — Agentic AI Applications with Claude Code (TGS-2025052468)
 
-This repository contains the hands-on course activities and sample project for the WSQ course **Agentic AI Applications with Claude Code** (Course Code: TGS-2025052468).
+Hands-on labs for the WSQ course **Agentic AI Applications with Claude Code**.
 
-**Register for the course:** [https://www.tertiarycourses.com.sg/wsq-agentic-ai-applications-with-claude-code.html](https://www.tertiarycourses.com.sg/wsq-agentic-ai-applications-with-claude-code.html)
+**Register for the course:** [tertiarycourses.com.sg](https://www.tertiarycourses.com.sg/wsq-agentic-ai-applications-with-claude-code.html)
 
-## Live Demos
+---
 
-- **Lead Generation:** [tertiarycourses.github.io/TGS-2025052468-Claude-Code/lead-generation/](https://tertiarycourses.github.io/TGS-2025052468-Claude-Code/lead-generation/)
-- **Bride Booking:** [tertiarycourses.github.io/TGS-2025052468-Claude-Code/bride-booking/](https://tertiarycourses.github.io/TGS-2025052468-Claude-Code/bride-booking/)
+## The four labs
 
-## Course Activities
+Each lab is a self-contained folder. They build on one another — Lab 1 creates
+the website that Labs 1b, 2 and 3 then extend.
 
-The step-by-step learner activities are documented in [course-activities.md](course-activities.md), covering:
+| Lab | Topic | What you do | Folder |
+|---|---|---|---|
+| **1** | Topic 1 — Fundamentals | Build & deploy a site with the **7-step workflow** | [`lab1-seven-steps/`](lab1-seven-steps/) |
+| **1b** | Topic 2 — Tools & Commands | A `/publish` **custom command** + **Playwright MCP** screenshots | [`lab1b-commands-mcp/`](lab1b-commands-mcp/) |
+| **2** | Topic 3 — Skills | Install 3 **skills** and revamp the site | [`lab2-skills/`](lab2-skills/) |
+| **3** | Topic 3 — Agents & Hooks | **Hooks**, **sub agents** and **`/loop`** | [`lab3-hooks/`](lab3-hooks/) |
 
-- **Topic 1: Claude Code Fundamentals** — Installation, VS Code setup, project structure, building a Lead Generator web app, CLAUDE.md, memory management, GitHub setup
-- **Topic 2: Tools and Commands** — Custom slash commands, MCP tools (Apify & Playwright), API token configuration
-- **Topic 3: Skills and Agents** — Community skills, frontend design skill, custom agents (UX/UI reviewer, code reviewer), Git worktrees, GitHub Actions, hooks
+---
 
-## Sample Project: Lead Generator SG
+## The thread running through all four
 
-A B2B lead discovery tool for the Singapore market built during the course. Search for business contacts by sector, job title, target group, and location — powered by Apify's Google Maps Scraper.
+Every lab demonstrates a different **trigger** — the thing that causes Claude to
+load or run something. That is the idea the whole course is organised around:
 
-### Screenshots
+| Mechanism | Trigger | Lab |
+|---|---|---|
+| `CLAUDE.md` | Every session | 1 (Step 4) |
+| Skills | On demand | 2 |
+| Tools / MCP | On demand | 1b |
+| Slash commands | Manually | 1b |
+| Hooks | By event | 3 |
+| Sub agents | By delegation | 3 |
+| `/loop` | On a schedule | 3 |
 
-#### Dark Mode
-![Dark Mode](screenshots/app-dark.png)
+---
 
-#### Light Mode
-![Light Mode](screenshots/app-light.png)
+## Before you start
 
-### Features
-
-- **Multi-criteria Search** — Filter by 17 Singapore industries, 13 B2B job titles, 5 target groups
-- **Apify Integration** — Scrapes real business data from Google Maps via Apify API
-- **Sortable Results Table** — Click column headers to sort, with pagination (25/page)
-- **CSV Export** — Download leads as a timestamped CSV file
-- **Dark/Light Theme** — Toggle between themes, preference saved to localStorage
-- **Responsive Design** — Works on desktop and mobile
-
-### Tech Stack
-
-- HTML5 / CSS3 / Vanilla JavaScript
-- [Apify API](https://apify.com) (Google Maps Scraper)
-- CSS Custom Properties for theming
-- No frameworks or build tools required
-
-## Getting Started
-
-### 1. Clone the repository
+- **Claude Code** installed and signed in — terminal or the VS Code extension
+- **Node.js** (LTS) — [nodejs.org](https://nodejs.org)
+- A **GitHub account**
+- A browser
 
 ```bash
-git clone https://github.com/alfredang/TGS-2025052468-Claude-Code.git
-cd TGS-2025052468-Claude-Code
+claude --version
+node --version
 ```
 
-### 2. Start a local server
+---
 
-```bash
-npx serve
-```
+## How to work through them
 
-### 3. Open in browser
+Start at [`lab1-seven-steps/README.md`](lab1-seven-steps/README.md) and follow
+the steps in order. Every step file gives you:
 
-Navigate to http://localhost:3000
+- the **exact prompt** to paste
+- what you should see happen
+- a **checkpoint** to confirm before moving on
 
-### 4. Enter your Apify token
+Do not skip the checkpoints — later labs assume the earlier ones actually
+worked.
 
-When you click **Generate Leads** for the first time, you'll be prompted to enter your Apify API token. Get yours at [console.apify.com](https://console.apify.com) under **Settings > API & Integrations**.
+---
 
-Your token is stored in `localStorage` and never committed to the repo.
+## Sample sites
 
-## Project Structure
+Finished builds you can read for reference live in
+[`lab1-seven-steps/sample-sites/`](lab1-seven-steps/sample-sites/) — a bridal
+booking page, an interior-design studio site, and a lead-generation app. The
+lab's own reference deliverable is in
+[`lab1-seven-steps/reference-site/`](lab1-seven-steps/reference-site/).
 
-```
-course-activities.md — Step-by-step learner activities
-index.html           — Main page with search form and results table
-style.css            — Dark/light theme styling via CSS custom properties
-data.js              — Singapore sectors, job titles, target groups
-app.js               — Application logic, Apify API calls, table rendering
-export.js            — CSV export utility
-```
+---
 
-## License
+## Legacy activity guide
 
-MIT
+The earlier single-file walkthrough is kept at
+[`course-activities.md`](course-activities.md) for reference. The four lab
+folders above supersede it.
+
+---
+
+© Tertiary Infotech Academy Pte Ltd · UEN 201200696W
